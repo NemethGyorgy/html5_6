@@ -47,3 +47,29 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
 }
+
+//Késleltetett megjelenítés.
+setTimeout( function() {
+    $( "#myModal" ).modal( "show" );
+}, 5000 );
+
+//Popover beállítása.
+$('#popover1').popover();
+
+//A folyamat állása.
+function changeProgress( progress ) {
+    if ( !progress ) {
+        progress = document.querySelector( ".progress-value" ).value;
+    }
+
+    //Reguláris kifejelézzel eltávolítjuk a nemkívánt karaktereket.
+    progress = progress.replace( /,/g, ".");
+    progress = progress.replace( /[^0-9\.]/g, "");                                
+                                          
+    progress = parseFloat( progress );
+    if ( !progress || isNaN( progress ))
+            return;
+                                          
+    var bar = document.querySelector( ".progress .progress-bar" );
+    bar.style.width = progress+"%";
+}
